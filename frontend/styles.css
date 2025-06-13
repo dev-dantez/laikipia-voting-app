@@ -1,0 +1,6 @@
+.voted {
+    background-color: green !important;
+    pointer-events: none;
+
+ 
+}
