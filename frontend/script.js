@@ -23,7 +23,7 @@ form.addEventListener("submit", async (e) => {
 
     try {
         const res = await
-        fetch("http://localhost:5000/votes", {
+        fetch("https://laikipia-voting-backend.onrender.com/votes", {
             method: "POST",
             headers:  {"Content-Type": "application/json" },
             body: JSON.stringify(data)
