@@ -8,6 +8,11 @@ dotenv.config();
 
 const app = express();
 
+app.get('/', (req, res) => {
+  res.send('🚀 Laikipia Voting API is live!');
+});
+
+
 app.use(cors());
 app.use(express.json());
 
@@ -22,7 +27,7 @@ mongoose
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(5000, () => {
-            console.log('Server is running on http://localhost:5000');
+            console.log('Server is running on https://laikipia-voting-api.onrender.com');
         });
     })
     .catch((error) => {
