@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("page fully loaded");
+  console.log("Page fully loaded");
 
   const form = document.getElementById("votingForm");
+  const messageEl = document.getElementById("message");
 
   if (!form) {
     console.error("votingForm not found in HTML");
@@ -24,24 +25,41 @@ document.addEventListener("DOMContentLoaded", () => {
       photographer: getSelectedRadioValue("photographer"),
     };
 
-    console.log("Data to send", data);
+    console.log("Collected vote data:", data);
+
+    // Validation: Make sure all fields are selected
+    const missingFields = Object.entries(data)
+      .filter(([key, value]) => value === "")
+      .map(([key]) => key);
+
+    if (missingFields.length > 0) {
+      messageEl.textContent = `Please vote in all categories: ${missingFields.join(", ")}`;
+      messageEl.style.color = "red";
+      return;
+    }
 
     try {
       const res = await fetch("https://laikipia-voting-backend.onrender.com/votes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       const result = await res.json();
       console.log("Response from server:", result);
 
-      document.getElementById("message").textContent =
-        result.message || "Vote submitted successfully!";
+      if (res.ok) {
+        messageEl.textContent = result.message || "Vote submitted successfully!";
+        messageEl.style.color = "green";
+        form.reset(); // Optional: reset after submission
+      } else {
+        messageEl.textContent = result.message || "Error submitting your vote.";
+        messageEl.style.color = "red";
+      }
     } catch (err) {
       console.error("Error during vote submission:", err);
-
-      document.getElementById("message").textContent = "Error submitting your vote. Please try again.";
+      messageEl.textContent = "Error submitting your vote. Please try again.";
+      messageEl.style.color = "red";
     }
   });
 });
