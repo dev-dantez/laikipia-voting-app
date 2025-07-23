@@ -22,7 +22,7 @@ mongoose
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(5000, () => {
-            console.log('Server is running on http://localhost:5000');
+            console.log('Server is running on https://laikipia-voting-api.onrender.com');
         });
     })
     .catch((error) => {
