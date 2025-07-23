@@ -36,4 +36,9 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.get("/", (req, res) => {
+    res.status(200).json({ message: "Votes endpoint is working. Use POST to submit votes." });
+});
+
+
 module.exports = router;
