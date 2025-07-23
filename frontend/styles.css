@@ -1,6 +1,29 @@
 .voted {
     background-color: green !important;
     pointer-events: none;
+}
 
- 
+.alert {
+  padding: 1em;
+  margin: 1em 0;
+  border-radius: 8px;
+  font-weight: bold;
+  display: none;
+  transition: all 0.3s ease-in-out;
+  max-width: 600px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alert.success {
+  background-color: #d1f7d6;
+  color: #0f5132;
+  border: 1px solid #0f5132;
+}
+
+.alert.error {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #842029;
 }
