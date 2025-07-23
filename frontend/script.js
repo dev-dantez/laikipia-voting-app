@@ -1,13 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Page fully loaded");
+  console.log("page fully loaded");
 
   const form = document.getElementById("votingForm");
-  const messageEl = document.getElementById("message");
+  const alertBox = document.getElementById("alertBox");
 
   if (!form) {
     console.error("votingForm not found in HTML");
     return;
   }
+
+  const showAlert = (message, type = "success") => {
+    alertBox.textContent = message;
+    alertBox.className = `alert ${type}`;
+    alertBox.style.display = "block";
+
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+      alertBox.style.display = "none";
+    }, 5000);
+  };
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -25,18 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       photographer: getSelectedRadioValue("photographer"),
     };
 
-    console.log("Collected vote data:", data);
-
-    // Validation: Make sure all fields are selected
-    const missingFields = Object.entries(data)
-      .filter(([key, value]) => value === "")
-      .map(([key]) => key);
-
-    if (missingFields.length > 0) {
-      messageEl.textContent = `Please vote in all categories: ${missingFields.join(", ")}`;
-      messageEl.style.color = "red";
-      return;
-    }
+    console.log("Data to send", data);
 
     try {
       const res = await fetch("https://laikipia-voting-backend.onrender.com/votes", {
@@ -49,17 +49,13 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Response from server:", result);
 
       if (res.ok) {
-        messageEl.textContent = result.message || "Vote submitted successfully!";
-        messageEl.style.color = "green";
-        form.reset(); // Optional: reset after submission
+        showAlert(result.message || "Vote submitted successfully!", "success");
       } else {
-        messageEl.textContent = result.message || "Error submitting your vote.";
-        messageEl.style.color = "red";
+        showAlert(result.message || "Failed to submit vote", "error");
       }
     } catch (err) {
       console.error("Error during vote submission:", err);
-      messageEl.textContent = "Error submitting your vote. Please try again.";
-      messageEl.style.color = "red";
+      showAlert("Error submitting your vote. Please try again.", "error");
     }
   });
 });
