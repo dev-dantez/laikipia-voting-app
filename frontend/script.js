@@ -1,46 +1,47 @@
 document.addEventListener("DOMContentLoaded", () => {
-console.log("page fully loaded");
+  console.log("page fully loaded");
 
-const form =document.getElementById("votingForm");
+  const form = document.getElementById("votingForm");
 
-if (!form) {
+  if (!form) {
     console.error("votingForm not found in HTML");
     return;
-}
+  }
 
-form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     console.log("Form submitted");
 
+    const getSelectedRadioValue = (name) => {
+      const selected = document.querySelector(`input[name="${name}"]:checked`);
+      return selected ? selected.value : "";
+    };
+
     const data = {
-        dancer: document.getElementById("dancer") ? document.getElementById("dancer").value : "",
-        dj: document.getElementById("dj") ? document.getElementById("dj").value : "",
-        influencer: document.getElementById("influencer") ? document.getElementById("influencer").value : "",
-        photographer: document.getElementById("photographer") ? document.getElementById("photographer").value : "",
+      dancer: getSelectedRadioValue("dancer"),
+      dj: getSelectedRadioValue("dj"),
+      influencer: getSelectedRadioValue("influencer"),
+      photographer: getSelectedRadioValue("photographer"),
     };
 
     console.log("Data to send", data);
 
     try {
-        const res = await
-        fetch("https://laikipia-voting-backend.onrender.com/votes", {
-            method: "POST",
-            headers:  {"Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
+      const res = await fetch("https://laikipia-voting-backend.onrender.com/votes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
 
-        const result = await res.json();
-        console.log("Response from server:",
-            result);
+      const result = await res.json();
+      console.log("Response from server:", result);
 
-            document.getElementById("message").textContent =
-            result.message || "Vote submitted successfully!";
-        } catch (err) {
-            console.error("Error during vote submission:", err);
+      document.getElementById("message").textContent =
+        result.message || "Vote submitted successfully!";
+    } catch (err) {
+      console.error("Error during vote submission:", err);
 
-            document.getElementById("message").textContent = "Error submitting your vote. Please try again.";
-        }
-    });
+      document.getElementById("message").textContent = "Error submitting your vote. Please try again.";
+    }
+  });
 });
-
-           
