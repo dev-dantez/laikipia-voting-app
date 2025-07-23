@@ -109,36 +109,61 @@
           </div>
         </div>
 
-        <!-- INFLUENCERS -->
-<!-- Influencer Category -->
-<div class="category">
-  <h2>Influencer</h2>
-  <div class="card-container">
-    <div class="card">
-      <img src="images/delvoh.jpg" alt="Delvoh" />
-      <h3>Delvoh</h3>
-      <button class="vote-btn" onclick="submitVote('influencer', 'Delvoh')">Vote</button>
-    </div>
-    <div class="card">
-      <img src="images/christabel.jpg" alt="Christabel" />
-      <h3>Christabel</h3>
-      <button class="vote-btn" onclick="submitVote('influencer', 'Christabel')">Vote</button>
-    </div>
-    <div class="card">
-      <img src="images/ian.jpg" alt="Ian" />
-      <h3>Ian</h3>
-      <button class="vote-btn" onclick="submitVote('influencer', 'Ian')">Vote</button>
-    </div>
-    <div class="card">
-      <img src="images/kamau.jpg" alt="Kamau" />
-      <h3>Kamau</h3>
-      <button class="vote-btn" onclick="submitVote('influencer', 'Kamau')">Vote</button>
-    </div>
-    <div class="card">
-      <img src="images/mungai.jpg" alt="Mungai" />
-      <h3>Mungai</h3>
-      <button class="vote-btn" onclick="submitVote('influencer', 'Mungai')">Vote</button>
-    </div>
+       <!-- Influencer Category -->
+<div>
+  <h2 class="block mb-4 text-lg font-semibold text-yellow-300">Best Influencer</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <!-- Influencer Cards -->
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Joel Mulwa Jnr" class="accent-yellow-500" />
+      <img src="./images/Joel mulwa jnr.jpg" alt="Joel Mulwa Jnr" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Joel Mulwa Jnr</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Arthur Kamau" class="accent-yellow-500" />
+      <img src="./images/Arthur Kamau.jpg" alt="Arthur Kamau" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Arthur Kamau</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Mtu Ken" class="accent-yellow-500" />
+      <img src="./images/Mtu Ken.jpg" alt="Mtu Ken" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Mtu Ken</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Ole Matasi" class="accent-yellow-500" />
+      <img src="./images/Ole Matasi.jpg" alt="Ole Matasi" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Ole Matasi</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Mose The One" class="accent-yellow-500" />
+      <img src="./images/Mose The One.jpg" alt="Mose The One" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Mose The One</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Onyie Wuod Adhiambo" class="accent-yellow-500" />
+      <img src="./images/Onyie Wuod Adhiambo.jpg" alt="Onyie Wuod Adhiambo" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Onyie Wuod Adhiambo</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Mshamba news" class="accent-yellow-500" />
+      <img src="./images/Mshamba news.jpg" alt="Mshamba news" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Mshamba news</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Kenneth Kamau" class="accent-yellow-500" />
+      <img src="./images/Kenneth Kamau.jpg" alt="Kenneth Kamau" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Kenneth Kamau</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="Kihuria Wa Ndorongo" class="accent-yellow-500" />
+      <img src="./images/Kihuria Wa Ndorongo.jpg" alt="Kihuria Wa Ndorongo" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">Kihuria Wa Ndorongo</span>
+    </label>
+    <label class="flex items-center space-x-4 bg-white text-black p-4 rounded-xl shadow hover:bg-yellow-100 cursor-pointer">
+      <input type="radio" name="influencer" value="JULIET KE (BEING JULIET)" class="accent-yellow-500" />
+      <img src="./images/JULIET KE(BEING JULIET).jpg" alt="JULIET KE (BEING JULIET)" class="w-16 h-16 rounded-full object-cover">
+      <span class="font-semibold">JULIET KE (BEING JULIET)</span>
+    </label>
   </div>
 </div>
 
