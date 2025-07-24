@@ -4,17 +4,36 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const voteRoutes = require('./routes/VoteRoutes');
 
-// Load environment variables
+// Load environment variables from .env
 dotenv.config();
 
-// Initialize express app
+// Initialize Express app
 const app = express();
 
-// Middleware configuration
-app.use(cors());
+// -------------------------------------
+// ✅ CORS Configuration (fixes frontend issues)
+const allowedOrigins = [
+  'https://laikipia-voting.netlify.app/', // real frontend domain
+ // 'http://localhost:3000'                   // For local testing
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Postman, curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error(`❌ CORS blocked: ${origin}`));
+  }
+}));
+
+// -------------------------------------
+
+// Middleware
 app.use(express.json());
 
-// Base route – for Render health check or sanity ping
+// Base route – sanity check
 app.get('/', (req, res) => {
   res.send('🚀 Laikipia Voting API is live!');
 });
@@ -25,10 +44,9 @@ app.use('/votes', voteRoutes);
 // MongoDB URI
 const mongoURI = process.env.MONGO_URI;
 
-// Log the loaded URI (ensure no sensitive credentials are exposed in production)
-console.log('Loaded URI:', mongoURI);
+console.log('🧪 Loaded Mongo URI:', mongoURI); // Don’t expose full URI in prod
 
-// Mongoose connection
+// Mongoose DB connection
 mongoose
   .connect(mongoURI)
   .then(() => {
