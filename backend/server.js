@@ -56,7 +56,7 @@ mongoose
 
     app.listen(PORT, () => {
       console.log(`🚀 Server is running on http://localhost:${PORT}`);
-      console.log(`🌍 Live on: https://laikipia-voting-api.onrender.com`);
+      console.log(`🌍 Live on: https://laikipia-voting-api.onrender.com/votes`);
     });
   })
   .catch((error) => {
