@@ -29,6 +29,7 @@ laikipia-voting-app/
 ├── backend/
 │   ├── models/
 │   │   └── Vote.js
+|   |   --- Nominee.js
 │   ├── routes/
 │   │   └── VoteRoutes.js
 │   └── server.js
